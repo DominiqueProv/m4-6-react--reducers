@@ -15,7 +15,7 @@ const TicketWidget = () => {
   const seatsPerRow = state.seatsPerRow;
   const hasLoaded = state.hasLoaded;
   const seats = state.seats;
-
+  
   const showCircular = () => {
     if (!hasLoaded) {
       return (

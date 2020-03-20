@@ -30,17 +30,30 @@ function reducer(state, action) {
     case 'purchase-ticket-request':
       return {
         ...state,
+        hasLoaded: true,
         status: 'awaiting-response',
       };
     case 'purchase-ticket-failure':
       return {
         ...state,
         status: 'error',
+        error: action.message,
+
       };
     case 'purchase-ticket-success':
       return {
         ...state,
         status: 'purchased',
+        error: null,
+        selectedSeatId: null,
+        price: null,
+        addCheckmark: false,
+
+      };
+      case 'finish-transation':
+      return {
+        ...state,
+        status: 'idle',
       };
     default:
       throw new Error('Unrecognized action');
@@ -56,9 +69,9 @@ export const TicketProvider = ({ children }) => {
       ...data,
     });
   };
+  
   const cancelBookingProcess = () => {
     dispatch({
-      //will refer at this action.type in reducer
       type: 'cancel-booking-process',
       // ...data,
     });
@@ -66,28 +79,32 @@ export const TicketProvider = ({ children }) => {
 
   const purchaseTicketRequest = () => {
     dispatch({
-      //will refer at this action.type in reducer
       type: 'purchase-ticket-request',
       // ...data,
     });
   };
 
-  const purchaseTicketFailure = () => {
+  const purchaseTicketFailure = (data) => {
     dispatch({
-      //will refer at this action.type in reducer
       type: 'purchase-ticket-failure',
-      // ...data,
+      ...data,
     });
   };
 
   const purchaseTicketSuccess = () => {
     dispatch({
-      //will refer at this action.type in reducer
       type: 'purchase-ticket-success',
       // ...data,
     });
   };
 
+  const finishTransaction = () => {
+    dispatch({
+      type: 'finish-transation',
+      // ...data,
+    });
+  };
+  
   return (
     <BookingContext.Provider
       value={{
@@ -97,8 +114,8 @@ export const TicketProvider = ({ children }) => {
           cancelBookingProcess,
           purchaseTicketRequest,
           purchaseTicketFailure,
-          purchaseTicketSuccess
-
+          purchaseTicketSuccess,
+          finishTransaction
         },
       }}
     >

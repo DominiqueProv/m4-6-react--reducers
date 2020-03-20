@@ -33,9 +33,13 @@ export default function FormDialog() {
           />
         </DialogContent>
         <DialogActions>
-        <BasicTextFields seatId = {state.selectedSeatId}/>
+        <BasicTextFields seatId = {state.selectedSeatId}
+                         error = {state.error}
+        />
         </DialogActions>
       </Dialog>
     </div>
   );
 }
+
+

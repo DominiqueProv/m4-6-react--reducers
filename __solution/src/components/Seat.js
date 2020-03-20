@@ -18,7 +18,6 @@ const Seat = ({ rowIndex, seatIndex, width, height, price, status }) => {
 
   const rowName = getRowName(rowIndex);
   const seatNum = getSeatNum(seatIndex);
-
   const seatId = encodeSeatId(rowIndex, seatIndex);
 
   return (

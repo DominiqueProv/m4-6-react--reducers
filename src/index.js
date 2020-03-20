@@ -4,6 +4,8 @@ import { SeatProvider } from './components/SeatContext';
 import App from './components/App';
 import { TicketProvider } from './components/BookingContext';
 
+
+
 const rootElement = document.getElementById('root');
 ReactDOM.render(
   <TicketProvider>

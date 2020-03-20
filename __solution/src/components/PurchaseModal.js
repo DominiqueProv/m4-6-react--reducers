@@ -75,9 +75,7 @@ const PurchaseModal = () => {
       <Form
         onSubmit={ev => {
           ev.preventDefault();
-
           purchaseTicketRequest();
-
           fetch('/api/book-seat', {
             method: 'POST',
             headers: {
@@ -87,6 +85,7 @@ const PurchaseModal = () => {
               creditCard,
               expiration,
               seatId: selectedSeatId,
+              //addCheckmark: true,
             }),
           })
             .then(res => res.json())

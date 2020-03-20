@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import StarRating from './Fa-Star';
 import FormDialog from './PurshaseModal';
+import {CustomizedSnackbars} from './Modals'
 
 
 
@@ -16,12 +17,16 @@ function App() {
   
   const {
     actions: { receiveSeatInfoFromServer },
+    state : { nullAction },
   } = React.useContext(SeatContext);
+  
   React.useEffect(() => {
     fetch('api/seat-availability')
       .then(res => res.json())
       .then(data => receiveSeatInfoFromServer(data));
-  }, []);
+  }, [nullAction]);
+
+  // receiveSeatInfoFromServer
 
   return (
     <Router>
@@ -30,6 +35,7 @@ function App() {
           <Route exact path='/'>
             <TicketWidget />
             <FormDialog/>
+            <CustomizedSnackbars/>
           </Route>
           <Route exact path='/star'>
             <StarRating />

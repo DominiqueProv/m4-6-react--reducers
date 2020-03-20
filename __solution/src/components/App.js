@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
-
 import GlobalStyles from './GlobalStyles';
 import TicketWidget from './TicketWidget';
 import PurchaseModal from './PurchaseModal';
